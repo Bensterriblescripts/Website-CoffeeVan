@@ -36,12 +36,10 @@ export default function Home() {
         <tbody>
           <tr>
             <td>
-              <img className="scale-50" src={exampleCoffee} alt="coffee1" />
+              <img className="max-w-xs mr-2 rounded-2xl" src={exampleCoffee} alt="coffee1" />
             </td>
-          </tr>
-          <tr>
             <td>
-              <img className="scale-50 " src={exampleCoffee} alt="coffee2" />
+              <img className="max-w-xs ml-2 rounded-2xl" src={exampleCoffee} alt="coffee2" />
             </td>
           </tr>
         </tbody>
