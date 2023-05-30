@@ -1,8 +1,27 @@
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import Modal from 'react-modal';
+
 import '../index.css'
 import exampleCoffee from './images/examples/stocklatte.png'
-import { Link } from "react-router-dom";
+
+Modal.setAppElement('#root')
+  
 
 export default function Home() {
+
+  // Image zoom modal
+  const [modalIsOpen,setIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  function openModal(img: string) {
+    setIsOpen(true);
+    setSelectedImage(img);
+  }
+  function closeModal(){
+    setIsOpen(false);
+    setSelectedImage(null);
+  }
+
   return (
   <div className='flex flex-col items-center justify-center mt-40 sm:mt-8'>
     <div id="core">
@@ -36,15 +55,51 @@ export default function Home() {
         <tbody>
           <tr>
             <td>
-              <img className="max-w-xs mr-2 rounded-2xl" src={exampleCoffee} alt="coffee1" />
+              <img className="max-w-xs mr-2 rounded-2xl" src={exampleCoffee} alt="coffee1" onClick={() => openModal(exampleCoffee)} />
             </td>
             <td>
-              <img className="max-w-xs ml-2 rounded-2xl" src={exampleCoffee} alt="coffee2" />
+              <img className="max-w-xs ml-2 rounded-2xl" src={exampleCoffee} alt="coffee2" onClick={() => openModal(exampleCoffee)} />
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+      <Modal 
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      contentLabel="imagesmodal"
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.75)'
+        },
+        content: {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          maxWidth: '50%',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: 'transparent',
+          border: 'none',
+        },
+      }}
+    >
+      <button onClick={closeModal} className='absolute text-black bg-white rounded-md p-2 border-2 border-black hover:scale-105'>Close</button>
+      <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <img 
+          src={selectedImage || ''} 
+          alt="Enlarged" 
+          style={{ 
+            objectFit: 'contain', 
+            maxWidth: '100%', 
+            maxHeight: '100%',
+            borderRadius: '10px',
+          }} 
+        />
+      </div>
+    </Modal>
   </div>
   )
 }
