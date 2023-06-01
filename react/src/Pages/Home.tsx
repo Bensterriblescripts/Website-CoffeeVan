@@ -23,7 +23,7 @@ export default function Home() {
   }
 
   return (
-  <div className='flex flex-col items-center justify-center mt-40 sm:mt-8'>
+  <div className='select-none flex flex-col items-center justify-center mt-40 sm:mt-8'>
     <div id="core">
       <table className='justify-center items-center'>
         <tbody>
@@ -55,10 +55,10 @@ export default function Home() {
         <tbody>
           <tr>
             <td>
-              <img className="max-w-xs mr-2 rounded-2xl" src={exampleCoffee} alt="coffee1" onClick={() => openModal(exampleCoffee)} />
+              <img className="max-w-xs mr-2 rounded-2xl transition-transform hover:scale-105" src={exampleCoffee} alt="coffee1" onClick={() => openModal(exampleCoffee)} />
             </td>
             <td>
-              <img className="max-w-xs ml-2 rounded-2xl" src={exampleCoffee} alt="coffee2" onClick={() => openModal(exampleCoffee)} />
+              <img className="max-w-xs ml-2 rounded-2xl transition-transform hover:scale-105" src={exampleCoffee} alt="coffee2" onClick={() => openModal(exampleCoffee)} />
             </td>
           </tr>
         </tbody>
